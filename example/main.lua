@@ -15,7 +15,7 @@ local lw = love.window
 
 local actual_object = {}
 actual_object.angle = 0.43
-actual_object.length = -75
+actual_object.length = -15
 
 local function table_print(t)
 	local result = ""
@@ -34,9 +34,9 @@ local function update_data(dt, obj)
 	end
 
 	if lk.isDown('left') then
-		obj.length = obj.length + (10*dt)
+		obj.length = obj.length + (1*dt)
 	elseif lk.isDown('right') then
-		obj.length = obj.length - (10*dt)
+		obj.length = obj.length - (1*dt)
 	end
 
 end
@@ -45,7 +45,7 @@ local function draw_object(obj)
 	
 	lg.push()
 	lg.translate(lw.getWidth()/2, lw.getHeight())
-	lg.scale(0.0250, 0.0250)
+	lg.scale(0.15, 0.15)
 	
 	local pos = Vector2(0, 0)
 	local lastpos = Vector2(0, 0)
