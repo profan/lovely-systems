@@ -23,6 +23,8 @@ Either with git clone as below or by downloading a zipball of the [latest...](ht
 
 Usage
 ------------
+When testing the example, use your arrow keys to change scale and segment size.
+
 Example of defining a sierpinski triangle, example also already present in example code.
 	
 		local lsystem = require "l-system"
