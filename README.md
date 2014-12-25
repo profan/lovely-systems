@@ -1,3 +1,5 @@
+![Tree](http://i.imgur.com/PZCJuuA.png)
+
 lovely-systems
 =================================
 
