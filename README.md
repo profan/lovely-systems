@@ -1,31 +1,36 @@
-base-project
+lovely-systems
 =================================
 
-Basic project, does game-like things and has a few basic includes and structure set up.
+Simple implementation of L-Systems in Lua, with examples in LÖVE2D.
 
 Requirements
 ------------
 
-* LÖVE 0.9.1
+* Lua >= 5.1 (?)
+* LÖVE2D (for the example project)
 
 Running the example project
 
-		love src
+		love example
 
 Downloading the source
 ------------
 
-		...
+	Either with git clone as below or by downloading a zipball of the latest...
+		
+		    git clone https://github.com/Profan/lovely-systems.git
 
 Usage
 ------------
+Example of defining a sierpinski triangle, example also already present in example code.
+		
+		initial_state = {state = {'F'}, rules = {['F'] = 'G-F-G', ['G'] = 'F+G+F'} }
+		fractal = lsystem.nthstep(initial_state, 2) -- recurses twice
+		-- fractal.state now holds: F+G+F-G-F-G-F+G+F, in table form.
 
-		...
+which in turn can be used to produce: ![Fractal](http://i.imgur.com/iPqtXre.png)
 
-Details
-------------
-
- * ...
+or by increasing the iterations to 8, you can produce: ![BetterFractal](http://i.imgur.com/wR1noEP.png)
 
 TODO
 ------------
@@ -37,9 +42,6 @@ Credits
 Credits for the libraries which are used in the example!
 
 * Matthias Richter - [HUMP.](https://github.com/vrld/hump)
-* Phoenix Enero - [LoveNoise.](https://github.com/icrawler/LoveNoise)
-* Robert Blancakert - [cupid.](https://bitbucket.org/basicer/cupid)
-
 
 License
 ------------
