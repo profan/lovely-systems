@@ -7,13 +7,15 @@ lsys = require "l-system"
 -----------------------------
 -- Locals -------------------
 local lg = love.graphics
+local lk = love.keyboard
 local lw = love.window
 
 -----------------------------
 -- Game Stuff ---------------
 
-local tree = {}
-local plant = {}
+local actual_object = {}
+actual_object.angle = 0.43
+actual_object.length = -75
 
 local function table_print(t)
 	local result = ""
@@ -43,6 +45,18 @@ local function draw_fractal(obj)
 
 end
 
+local function update_data(dt, obj)
+	if lk.isDown('up') then 
+		obj.angle = obj.angle + (0.5*dt)
+	elseif lk.isDown('down') then 
+		obj.angle = obj.angle - (0.5*dt) 
+	elseif lk.isDown('left') then
+		obj.length = obj.length + (10*dt)
+	elseif lk.isDown('right') then
+		obj.length = obj.length - (10*dt)
+	end
+end
+
 local function draw_plant(obj)
 	
 	lg.push()
@@ -51,7 +65,7 @@ local function draw_plant(obj)
 	
 	local pos = Vector2(0, 0)
 	local lastpos = Vector2(0, 0)
-	local rotvec = Vector2(0, -75)
+	local rotvec = Vector2(0, obj.length)
 
 	
 	local last
@@ -60,8 +74,8 @@ local function draw_plant(obj)
 
 	for k, v in pairs(obj.state) do
 		if v == 'F' then pos = pos + rotvec color[1] = color[1] + 1 
-		elseif v == '-' then rotvec = rotvec:rotated(-0.43) color[2] = color[2] + 1
-		elseif v == '+' then rotvec = rotvec:rotated(0.43) color[3] = color[3] + 1
+		elseif v == '-' then rotvec = rotvec:rotated(-obj.angle) color[2] = color[2] + 1
+		elseif v == '+' then rotvec = rotvec:rotated(obj.angle) color[3] = color[3] + 1
 		elseif v == '[' then 
 			stack[#stack+1] = {pos,rotvec, lastpos, color}
 		elseif v == ']' then
@@ -77,10 +91,12 @@ local function draw_plant(obj)
 	lg.pop()
 end
 
-local function draw_debug()
+local function draw_debug(obj)
 	lg.push()
-	lg.translate(lw.getWidth() - 64, 16)
+	lg.translate(lw.getWidth() - 128, 16)
 	lg.print("FPS: " .. love.timer.getFPS(), 0, 0)
+	lg.print("Object Angle: " .. obj.angle, 0, 16)
+	lg.print("Segment Size: " .. obj.length, 0, 32)
 	lg.pop()
 end
 
@@ -105,6 +121,8 @@ function love.load()
 
 	state5 = {state = {'F'}, rules={['F'] = 'F[+F]F[-F][F]'} } -- fluffy
 	state6 = {state = {'F'}, rules={['F'] = 'F[+F]F[[-F][-F]F][+F]'} } -- christmas tree
+
+	actual_object.state = plant.state -- used for drawing/updating stuff
 	
 end
 
@@ -113,13 +131,13 @@ function love.quit()
 end
 
 function love.update(dt)
-	
+	update_data(dt, actual_object)
 end
 
 function love.draw()
-	draw_debug()
+	draw_debug(actual_object)
 	--draw_fractal(tree)
-	draw_plant(plant)
+	draw_plant(actual_object)
 end
 
 -- end LÖVE2D Callbacks -----
