@@ -25,7 +25,7 @@ Usage
 ------------
 Example of defining a sierpinski triangle, example also already present in example code.
 	
-		local lsystem = require "l-system.lua"
+		local lsystem = require "l-system"
 		
 		initial_state = {state = {'F'}, rules = {['F'] = 'G-F-G', ['G'] = 'F+G+F'} }
 		fractal = lsystem.nthstep(initial_state, 2) -- recurses twice
