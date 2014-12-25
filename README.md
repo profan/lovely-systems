@@ -36,6 +36,9 @@ which in turn can be used to produce: ![Fractal](http://i.imgur.com/iPqtXre.png)
 
 or by increasing the iterations to 8, you can produce: ![BetterFractal](http://i.imgur.com/wR1noEP.png)
 
+another example, a christmas tree! (sort of)
+![Gran](http://i.imgur.com/KolwM5G.png)
+
 TODO
 ------------
 
