@@ -56,6 +56,8 @@ local function draw_object(obj)
 	local stack = {}
 	local color = {255, 255, 255}
 
+
+	-- currently assumes this command structure, somehow make a more modular thingy?
 	for k, v in pairs(obj.state) do
 
 		if v == 'F' then 
