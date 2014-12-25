@@ -3,7 +3,7 @@
 lovely-systems
 =================================
 
-Simple implementation of L-Systems in Lua, with examples in LÖVE2D.
+Simple implementation of [L-Systems](http://en.wikipedia.org/wiki/L-system) in Lua, with examples in LÖVE2D.
 
 Requirements
 ------------
