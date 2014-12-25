@@ -24,9 +24,12 @@ Either with git clone as below or by downloading a zipball of the [latest...](ht
 Usage
 ------------
 Example of defining a sierpinski triangle, example also already present in example code.
+	
+		local lsystem = require "l-system.lua"
 		
 		initial_state = {state = {'F'}, rules = {['F'] = 'G-F-G', ['G'] = 'F+G+F'} }
 		fractal = lsystem.nthstep(initial_state, 2) -- recurses twice
+		
 		-- fractal.state now holds: F+G+F-G-F-G-F+G+F, in table form.
 
 which in turn can be used to produce: ![Fractal](http://i.imgur.com/iPqtXre.png)
