@@ -25,32 +25,13 @@ local function table_print(t)
 	print(result)
 end
 
-local function draw_fractal(obj)
-
-	lg.push()
-	lg.translate(lw.getWidth() / 2, lw.getHeight() / 2)
-
-	local pos = Vector2(0, 0)
-	local lastpos = Vector2(0, 0)
-	local mov_vector = Vector2(10, 0)
-	for k, v in pairs(obj.state) do
-		if v == 'F' or v == 'G' then pos = pos + mov_vector
-		elseif v == '+' then mov_vector = mov_vector:rotated(1.04)
-		elseif v == '-' then mov_vector = mov_vector:rotated(-1.04) end
-		lg.line(lastpos.x, lastpos.y, pos.x, pos.y)
-		lastpos = pos
-	end
-
-	lg.pop()
-
-end
-
 local function update_data(dt, obj)
 	
 	if lk.isDown('up') then 
 		obj.angle = obj.angle + (0.5*dt)
 	elseif lk.isDown('down') then 
 		obj.angle = obj.angle - (0.5*dt) 
+	end
 
 	if lk.isDown('left') then
 		obj.length = obj.length + (10*dt)
@@ -60,7 +41,7 @@ local function update_data(dt, obj)
 
 end
 
-local function draw_plant(obj)
+local function draw_object(obj)
 	
 	lg.push()
 	lg.translate(lw.getWidth()/2, lw.getHeight())
@@ -76,18 +57,24 @@ local function draw_plant(obj)
 	local color = {255, 255, 255}
 
 	for k, v in pairs(obj.state) do
-		if v == 'F' then pos = pos + rotvec color[1] = color[1] + 1 
-		elseif v == '-' then rotvec = rotvec:rotated(-obj.angle) color[2] = color[2] + 1
-		elseif v == '+' then rotvec = rotvec:rotated(obj.angle) color[3] = color[3] + 1
+
+		if v == 'F' then 
+			pos = pos + rotvec color[1] = color[1] + 1 
+		elseif v == '-' then 
+			rotvec = rotvec:rotated(-obj.angle) color[2] = color[2] + 1
+		elseif v == '+' then 
+			rotvec = rotvec:rotated(obj.angle) color[3] = color[3] + 1
 		elseif v == '[' then 
 			stack[#stack+1] = {pos,rotvec, lastpos, color}
 		elseif v == ']' then
 			pos, rotvec, lastpos, color = unpack(stack[#stack])
 			stack[#stack] = nil
 		end
+
 		lg.setColor(color)
 		lg.line(lastpos.x, lastpos.y, pos.x, pos.y)
 		lastpos = pos
+
 	end
 
 	lg.setColor(255, 255, 255)
@@ -139,8 +126,7 @@ end
 
 function love.draw()
 	draw_debug(actual_object)
-	--draw_fractal(tree)
-	draw_plant(actual_object)
+	draw_object(actual_object)
 end
 
 -- end LÖVE2D Callbacks -----
