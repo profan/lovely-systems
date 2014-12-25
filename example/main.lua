@@ -46,15 +46,18 @@ local function draw_fractal(obj)
 end
 
 local function update_data(dt, obj)
+	
 	if lk.isDown('up') then 
 		obj.angle = obj.angle + (0.5*dt)
 	elseif lk.isDown('down') then 
 		obj.angle = obj.angle - (0.5*dt) 
-	elseif lk.isDown('left') then
+
+	if lk.isDown('left') then
 		obj.length = obj.length + (10*dt)
 	elseif lk.isDown('right') then
 		obj.length = obj.length - (10*dt)
 	end
+
 end
 
 local function draw_plant(obj)
