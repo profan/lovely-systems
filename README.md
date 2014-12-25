@@ -15,10 +15,9 @@ Running the example project
 
 Downloading the source
 ------------
-
-	Either with git clone as below or by downloading a zipball of the latest...
+Either with git clone as below or by downloading a zipball of the [latest...](https://github.com/Profan/lovely-systems/archive/master.zip)
 		
-		    git clone https://github.com/Profan/lovely-systems.git
+		git clone https://github.com/Profan/lovely-systems.git
 
 Usage
 ------------
