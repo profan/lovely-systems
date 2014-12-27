@@ -52,7 +52,6 @@ local function draw_object(obj)
 	local rotvec = Vector2(0, obj.length)
 
 	
-	local last
 	local stack = {}
 	local color = {255, 255, 255}
 
