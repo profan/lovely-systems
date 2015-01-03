@@ -26,14 +26,14 @@ Usage
 When testing the example, use your arrow keys to change scale and segment size.
 
 Example of defining a sierpinski triangle, example also already present in example code.
-	
-		local lsystem = require "l-system"
+```lua	
+local lsystem = require "l-system"
 		
-		initial_state = {state = {'F'}, rules = {['F'] = 'G-F-G', ['G'] = 'F+G+F'} }
-		fractal = lsystem.nthstep(initial_state, 2) -- recurses twice
+initial_state = {state = {'F'}, rules = {['F'] = 'G-F-G', ['G'] = 'F+G+F'} }
+fractal = lsystem.nthstep(initial_state, 2) -- recurses twice
 		
-		-- fractal.state now holds: F+G+F-G-F-G-F+G+F, in table form.
-
+-- fractal.state now holds: F+G+F-G-F-G-F+G+F, in table form.
+```
 which in turn can be used to produce: ![Fractal](http://i.imgur.com/iPqtXre.png)
 
 or by increasing the iterations to 8, you can produce: ![BetterFractal](http://i.imgur.com/wR1noEP.png)
